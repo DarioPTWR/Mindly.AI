@@ -2,23 +2,8 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import ReCAPTCHA from "react-google-recaptcha";
 import process from "dotenv";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase";
 
 export default function ShareStory() {
-  const addStory = async (e) => {
-    e.preventDefault();
-
-    try {
-      const docRef = await addDoc(collection(db, "todos"), {
-        todo: todo,
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
-
   return (
     <Navbar
       page={

@@ -1,7 +1,10 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate()
+
   return (
     <>
       <Navbar
@@ -23,7 +26,7 @@ const Home = () => {
                   Welcome to a supportive community where you can share and find
                   stories related to mental health.
                 </p>
-                <button className="btn btn-wide btn-primary">
+                <button className="btn btn-wide btn-primary" onClick={() => navigate('/share')}>
                   Share your story
                 </button>
               </div>

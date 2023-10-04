@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar({ page }) {
+  const navigate = useNavigate();
+
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -28,7 +31,12 @@ export default function Navbar({ page }) {
               </svg>
             </label>
           </div>
-          <div className="flex-1 px-2 mx-2 font-bold text-xl">MindfulHacks</div>
+          <div
+            className="flex-1 px-2 mx-2 font-bold text-xl hover:cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            mindly.ai
+          </div>
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal">
               {/* Navbar menu content here */}

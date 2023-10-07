@@ -1,21 +1,24 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDB78I-dyNnYeFXW9iukfITzd2-lKELqOw",
-  authDomain: "mindly-ai-ccd16.firebaseapp.com",
-  projectId: "mindly-ai-ccd16",
-  storageBucket: "mindly-ai-ccd16.appspot.com",
-  messagingSenderId: "822424859545",
-  appId: "1:822424859545:web:40dfa6d9e438117a415908",
-  measurementId: "G-9J09PVHVCG"
+  apiKey: "AIzaSyCu0uGseW7iQ3kWM9Rp2bMBHsqv8pAFKgA",
+  authDomain: "mindlyai.firebaseapp.com",
+  projectId: "mindlyai",
+  storageBucket: "mindlyai.appspot.com",
+  messagingSenderId: "816880545897",
+  appId: "1:816880545897:web:46e77f95c9de0d265232f8",
+  measurementId: "G-2WJ5P0EH3G"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+export const db = getFirestore(app);

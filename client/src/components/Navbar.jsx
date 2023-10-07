@@ -41,10 +41,13 @@ export default function Navbar({ page }) {
             <ul className="menu menu-horizontal">
               {/* Navbar menu content here */}
               <li>
-                <a>Navbar Item 1</a>
+                <a href="..">Home</a>
               </li>
               <li>
-                <a>Navbar Item 2</a>
+                <a href="./share">Share</a>
+              </li>
+              <li>
+                <a href="./admin">Admin</a>
               </li>
             </ul>
           </div>
@@ -60,10 +63,13 @@ export default function Navbar({ page }) {
         <ul className="menu p-4 w-80 min-h-full bg-base-200">
           {/* Sidebar content here */}
           <li>
-            <a>Sidebar Item 1</a>
+            <a>Home</a>
           </li>
           <li>
-            <a>Sidebar Item 2</a>
+            <a>Share</a>
+          </li>
+          <li>
+            <a>Admin</a>
           </li>
         </ul>
       </div>

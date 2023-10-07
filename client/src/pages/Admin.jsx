@@ -10,7 +10,7 @@ import axios from 'axios'
 const Admin = () => {
     const storyCollectionRef = collection(db, "stories");
     const [filteredData, setFilteredData] = React.useState([]);
-
+  
     useEffect(()=> {
         const getStory = async () => {
             try {

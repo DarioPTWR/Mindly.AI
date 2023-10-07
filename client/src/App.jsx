@@ -7,6 +7,7 @@ import {
 import Home from './pages/Home'
 import ShareStory from "./pages/ShareStory";
 import Admin from "./pages/Admin";
+import Images from "./pages/Images";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,9 +22,12 @@ function App() {
     {
       path: "/admin",
       element: <Admin/>
+    },
+    {
+      path:"/images",
+      element: <Images/>
     }
   ]);
-
   return (
     <RouterProvider router={router} />
   )

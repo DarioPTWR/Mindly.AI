@@ -49,6 +49,9 @@ export default function Navbar({ page }) {
               <li>
                 <a href="./admin">Admin</a>
               </li>
+              <li>
+                <a href="./images">Images</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -70,6 +73,9 @@ export default function Navbar({ page }) {
           </li>
           <li>
             <a>Admin</a>
+          </li>
+          <li>
+            <a>Images</a>
           </li>
         </ul>
       </div>

@@ -5,19 +5,17 @@ import mindlyai from "../assets/mindlyai.png";
 import feature1 from "../assets/featured-story.png";
 import { db } from "../config/firebase";
 import { getDocs, collection, addDoc } from "firebase/firestore"
-
-
+import axios from 'axios'
 
 const Admin = () => {
     const storyCollectionRef = collection(db, "stories");
-    const [filteredData, setFilteredData] = React.useState([{id: "OMG"}]);
-
+    const [filteredData, setFilteredData] = React.useState([]);
+  
     useEffect(()=> {
         const getStory = async () => {
             try {
                 const data = await getDocs(storyCollectionRef);
                 const dataFilter = data.docs.map((doc)=>({...doc.data(), id:doc.id}));
-                console.log(dataFilter)
                 setFilteredData(dataFilter)
             } catch(err) {
                 console.log(err);
@@ -25,9 +23,35 @@ const Admin = () => {
         };
         getStory();
     }, [])
+
+    const handleApprove = (story) => {
+      console.log(story)
+      axios.post('/storySegmenting', {content: story})
+        .then(res => {
+          const segments = JSON.parse(res.data.choices[0].message.content)
+          const requests = Object.values(segments).map(segment => {
+            return axios.post('/generateImage', {prompt: segment})
+          })
+          console.log(requests)
+          axios.all(requests)
+            .then(res => {
+              res.forEach(response => {
+                console.log(response.data)
+              })
+            })
+            .catch(err => {
+              err.forEach(error => {
+                console.log(error)
+              })
+            })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
     
     return (
-        <>
+      <>
       <Navbar
         page={(
           <div className="bg-blue-100 min-h-screen">
@@ -49,7 +73,7 @@ const Admin = () => {
               </div>
             </div>
             <div className="mt-8 flex-col flex items-center pb-12">
-              <h2 className="text-3xl font-medium uppercase font-extrabold text-gray-700 mb-4">
+              <h2 className="text-3xl uppercase font-extrabold text-gray-700 mb-4">
                 ADMIN PAGE
               </h2>
             </div>
@@ -78,15 +102,18 @@ const Admin = () => {
                 </thead>
                 <tbody>
                 {
-                    filteredData.map(obj => {
+                    filteredData.map((obj, key) => {
                         return (
-                        <tr>
+                        <tr key={key}>
                             <td className="text-black">{obj.id}</td>
                             <td className="text-black">{obj.name}</td>
                             <td className="text-black">{obj.handle}</td>
                             <td className="text-black">{obj.title}</td>
                             <td className="text-black">{obj.story}</td>
-                            <td><button className="text-center w-full bg-green-500 rounded border-2 border-white">&#10003;</button></td>
+                            <td><button
+                              className="text-center w-full bg-green-500 rounded border-2 border-white"
+                              onClick={() => handleApprove(obj.story)}
+                            >&#10003;</button></td>
                         </tr>
                         );
                     })

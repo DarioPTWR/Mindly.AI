@@ -8,8 +8,11 @@ import Home from './pages/Home'
 import ShareStory from "./pages/ShareStory";
 import Admin from "./pages/Admin";
 import Images from "./pages/Images";
+import axios from "axios";
+
 
 function App() {
+  axios.defaults.baseURL = 'http://localhost:8000';
   const router = createBrowserRouter([
     {
       path: "/",

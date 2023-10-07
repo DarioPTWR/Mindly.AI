@@ -6,6 +6,7 @@ import {
 
 import Home from './pages/Home'
 import ShareStory from "./pages/ShareStory";
+import Admin from "./pages/Admin";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,6 +17,10 @@ function App() {
     {
       path: "/share",
       element: <ShareStory />
+    },
+    {
+      path: "/admin",
+      element: <Admin/>
     }
   ]);
 

@@ -9,6 +9,7 @@ import ShareStory from "./pages/ShareStory";
 import Admin from "./pages/Admin";
 
 function App() {
+  axios.defaults.baseURL = 'http://localhost:8000';
   const router = createBrowserRouter([
     {
       path: "/",

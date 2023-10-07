@@ -7,6 +7,7 @@ import {
 import Home from './pages/Home'
 import ShareStory from "./pages/ShareStory";
 import Admin from "./pages/Admin";
+import axios from "axios";
 
 function App() {
   axios.defaults.baseURL = 'http://localhost:8000';

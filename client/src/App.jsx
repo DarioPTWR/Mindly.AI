@@ -6,8 +6,10 @@ import {
 
 import Home from './pages/Home'
 import ShareStory from "./pages/ShareStory";
+import Admin from "./pages/Admin";
 
 function App() {
+  axios.defaults.baseURL = 'http://localhost:8000';
   const router = createBrowserRouter([
     {
       path: "/",
@@ -16,6 +18,10 @@ function App() {
     {
       path: "/share",
       element: <ShareStory />
+    },
+    {
+      path: "/admin",
+      element: <Admin/>
     }
   ]);
 

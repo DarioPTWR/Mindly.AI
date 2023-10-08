@@ -12,7 +12,7 @@ export default function Images() {
       page={
         <>
           <div className="p-8 bg-blue-100 min-h-screen">
-            <h1 className="text-center text-gray-900 text-4xl uppercase mb-8 font-bold">Verify Generated Images</h1>
+            <h1 className="text-center text-gray-700 text-4xl uppercase font-extrabold mb-8 font-bold">Verify Generated Images</h1>
             <div className="card bg-base-100 shadow-xl pt-4 text-center">
                 <div className="font-bold uppercase text-2xl underline">Title</div>
                 <div className="flex justify-center">

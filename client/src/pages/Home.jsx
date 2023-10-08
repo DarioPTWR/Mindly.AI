@@ -5,6 +5,7 @@ import mindlyai from "../assets/mindlyai.png";
 import feature1 from "../assets/featured-story.png";
 import { db } from "../config/firebase";
 import { getDocs, collection, addDoc } from "firebase/firestore"
+import instagram from "../assets/instagram.png"
 
 const Home = () => {
   const navigate = useNavigate()
@@ -40,10 +41,9 @@ const Home = () => {
                     text-center h-full flex 
                     flex-col items-center justify-center"
               >
-                <img src={mindlyai} className="w-36"/>
-                {/* <h1 className="text-4xl font-bold mb-4 text-white">mindly.ai</h1> */}
+                <a href="https://www.instagram.com/mind.ly.ai/" target="_blank"><img src={mindlyai} className="w-36"/></a>
                 <p className="text-lg text-gray-300 font-medium mb-8">
-                  Sharing Stories 📖 &#183; Building Communities 🫶 
+                  Sharing Stories 📖 | Building Communities 🫶 
                 </p>
                 <button className="btn btn-wide btn-primary" onClick={() => navigate('/share')}>
                   Share your story
@@ -51,7 +51,13 @@ const Home = () => {
               </div>
             </div>
             <div className="mt-8 flex-col flex items-center pb-12">
-              <h2 className="text-3xl font-medium uppercase font-bold text-gray-700 mb-4">
+              <h2 className="text-3xl font-extrabold uppercase font-bold text-gray-700 mb-4">What is mindly.ai?</h2>
+              <hr className="h-0.5 bg-gray-700 w-3/4 mb-4"/>
+              <p className="text-gray-700 text-center w-1/2 mb-4 text-lg">Mindly.AI consists of a website and an instagram page, where users visit the website to share their stories and experiences of their mental health issues, and with Artificial Intelligence, four images are generated to help tell their story, which are then posted onto our Instagram page to share with other people in order to help raise awareness and break mental health stimgas. </p>
+              <h5 className="text-xl font-extrabold uppercase font-bold text-gray-700 mb-4">our instagram page</h5>
+              <p className="text-gray-700 text-center w-1/2 mb-4 text-lg">Below is a link to our instagram page, @mind.ly.ai, where you can see stories from other people. Please do take a visit and follow us.</p>
+              <a href="https://www.instagram.com/mind.ly.ai/" className="w-14 h-14 flex justify-center align-center bg-[#681ce4] rounded-full" target="_blank"><img src={instagram} className="w-8 h-8 mt-3"/></a>
+              <h2 className="mt-4 text-3xl font-extrabold uppercase font-bold text-gray-700 mb-4">
                 Featured Stories
               </h2>
               <div className="card bg-base-100 shadow-xl pt-4">

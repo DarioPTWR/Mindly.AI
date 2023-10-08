@@ -7,9 +7,18 @@ import { db } from "../config/firebase";
 import { getDocs, collection, addDoc } from "firebase/firestore"
 import axios from 'axios'
 
+const backupImages = [
+  "https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-69bb90b8-1811-4e35-a1dd-f94f3bc7e72b.png",
+  "https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-4505dd04-2c4b-46a9-a607-f3eda132e00a.png",
+  "https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-38d034ec-cc94-4dd3-a1d1-6d13f3dc7cac.png",
+  "https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-9d2f1e8e-9806-4a06-9e7d-876f93649060.png"
+]
+
 const Admin = () => {
     const storyCollectionRef = collection(db, "stories");
     const [filteredData, setFilteredData] = React.useState([]);
+    const [loading, setLoading] = React.useState(false)
+    const navigate = useNavigate()
   
     useEffect(()=> {
         const getStory = async () => {
@@ -24,30 +33,48 @@ const Admin = () => {
         getStory();
     }, [])
 
-    const handleApprove = (story) => {
-      console.log(story)
-      axios.post('/storySegmenting', {content: story})
-        .then(res => {
-          const segments = JSON.parse(res.data.choices[0].message.content)
-          const requests = Object.values(segments).map(segment => {
-            return axios.post('/generateImage', {prompt: segment})
-          })
-          console.log(requests)
-          axios.all(requests)
-            .then(res => {
-              res.forEach(response => {
-                console.log(response.data)
-              })
-            })
-            .catch(err => {
-              err.forEach(error => {
-                console.log(error)
-              })
-            })
-        })
-        .catch(err => {
-          console.log(err)
-        })
+    const handleApprove = (storyObj) => {
+      setLoading(true)
+      navigate('/images', {
+        state: {
+          images: backupImages,
+          title: storyObj.title,
+          story: storyObj.story
+        }
+      })
+      setLoading(false)
+      // axios.post('/storySegmenting', {content: storyObj.story})
+      //   .then(res => {
+      //     const segments = JSON.parse(res.data.choices[0].message.content)
+      //     const requests = Object.values(segments).map(segment => {
+      //       return axios.post('/generateImage', {prompt: segment})
+      //     })
+      //     axios.all(requests)
+      //       .then(res => {
+      //         let images = []
+      //         res.forEach(response => {
+      //           images.push(response.data)
+      //           console.log(response.data)
+      //           navigate('/images', {
+      //             state: {
+      //               images: images,
+      //               title: storyObj.title,
+      //               story: storyObj.story
+      //             }
+      //           })
+      //         })
+      //         setLoading(false)
+
+      //       })
+      //       .catch(err => {
+      //         console.log(err)
+      //         setLoading(false)
+      //       })
+      //   })
+      //   .catch(err => {
+      //     setLoading(false)
+      //     console.log(err)
+      //   })
     }
     
     return (
@@ -74,7 +101,7 @@ const Admin = () => {
             </div>
             <div className="mt-8 flex-col flex items-center pb-12">
               <h2 className="text-3xl uppercase font-extrabold text-gray-700 mb-4">
-                ADMIN PAGE
+                {loading ? 'Loading...' : 'ADMIN PAGE'}
               </h2>
             </div>
             <table className="text-black mx-auto table w-3/4 mb-36">
@@ -102,21 +129,21 @@ const Admin = () => {
                 </thead>
                 <tbody>
                 {
-                    filteredData.map((obj, key) => {
-                        return (
-                        <tr key={key}>
-                            <td className="text-black">{obj.id}</td>
-                            <td className="text-black">{obj.name}</td>
-                            <td className="text-black">{obj.handle}</td>
-                            <td className="text-black">{obj.title}</td>
-                            <td className="text-black">{obj.story}</td>
-                            <td><button
-                              className="text-center w-full bg-green-500 rounded border-2 border-white"
-                              onClick={() => handleApprove(obj.story)}
-                            >&#10003;</button></td>
-                        </tr>
-                        );
-                    })
+                  filteredData.map((obj, key) => {
+                    return (
+                      <tr key={key}>
+                        <td className="text-black">{obj.id}</td>
+                        <td className="text-black">{obj.name}</td>
+                        <td className="text-black">{obj.handle}</td>
+                        <td className="text-black">{obj.title}</td>
+                        <td className="text-black">{obj.story}</td>
+                        <td><button
+                          className="text-center w-full bg-green-500 rounded border-2 border-white"
+                          onClick={() => handleApprove(obj)}
+                        >&#10003;</button></td>
+                      </tr>
+                    );
+                  })
                 }
                 </tbody>
             </table>

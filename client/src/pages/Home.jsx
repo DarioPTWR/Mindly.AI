@@ -57,14 +57,15 @@ const Home = () => {
               <h5 className="text-xl font-extrabold uppercase font-bold text-gray-700 mb-4">our instagram page</h5>
               <p className="text-gray-700 text-center w-1/2 mb-4 text-lg">Below is a link to our instagram page, @mind.ly.ai, where you can see stories from other people. Please do take a visit and follow us.</p>
               <a href="https://www.instagram.com/mind.ly.ai/" className="w-14 h-14 flex justify-center align-center bg-[#681ce4] rounded-full" target="_blank"><img src={instagram} className="w-8 h-8 mt-3"/></a>
-              <h2 className="mt-4 text-3xl font-extrabold uppercase font-bold text-gray-700 mb-4">
+              <h2 className="text-3xl uppercase font-bold text-gray-700 mb-4">
                 Featured Stories
               </h2>
               <div className="card bg-base-100 shadow-xl pt-4">
                 <figure>
                   <img
-                    src={feature1}
+                    src={'https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-69bb90b8-1811-4e35-a1dd-f94f3bc7e72b.png'}
                     alt="Shoes"
+                    className="w-80"
                   />
                 </figure>
                 <hr className="w-3/4 mx-auto my-4"/>

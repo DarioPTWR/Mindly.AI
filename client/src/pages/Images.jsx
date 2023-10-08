@@ -5,8 +5,19 @@ import { getDocs, collection, addDoc } from "firebase/firestore"
 import ReCAPTCHA from "react-google-recaptcha";
 import process from "dotenv";
 import mindly from "../assets/mindlyai.png"
+import { useLocation } from "react-router-dom";
+
+const backupImages = [
+  "https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-69bb90b8-1811-4e35-a1dd-f94f3bc7e72b.png",
+  "https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-4505dd04-2c4b-46a9-a607-f3eda132e00a.png",
+  "https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-38d034ec-cc94-4dd3-a1d1-6d13f3dc7cac.png",
+  "https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-9d2f1e8e-9806-4a06-9e7d-876f93649060.png"
+]
 
 export default function Images() {
+  const { state } = useLocation();
+  console.log(state)
+
   return (
     <Navbar
       page={
@@ -14,15 +25,16 @@ export default function Images() {
           <div className="p-8 bg-blue-100 min-h-screen">
             <h1 className="text-center text-gray-700 text-4xl uppercase font-extrabold mb-8 font-bold">Verify Generated Images</h1>
             <div className="card bg-base-100 shadow-xl pt-4 text-center">
-                <div className="font-bold uppercase text-2xl underline">Title</div>
-                <div className="flex justify-center">
-                  <img src={mindly} className="w-1/5"/>
-                  <img src={mindly} className="w-1/5"/>
-                  <img src={mindly} className="w-1/5"/>
-                  <img src={mindly} className="w-1/5"/>
-                </div>
-                <div className="font-bold uppercase text-2xl underline ">Story</div>
-                <p className="text-lg mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <div className="font-bold uppercase text-2xl underline">{state.title}</div>
+              <div className="flex justify-center">
+                {
+                  state.images.map((image, index) => {
+                    return <img src={image} key={index} className="w-1/5"/>
+                  })
+                }
+              </div>
+              <div className="font-bold uppercase text-2xl underline ">Story</div>
+              <p className="text-lg mb-8">{state.story}</p>
             </div>
           </div>
         </>

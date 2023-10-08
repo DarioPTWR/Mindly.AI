@@ -51,14 +51,15 @@ const Home = () => {
               </div>
             </div>
             <div className="mt-8 flex-col flex items-center pb-12">
-              <h2 className="text-3xl font-medium uppercase font-bold text-gray-700 mb-4">
+              <h2 className="text-3xl uppercase font-bold text-gray-700 mb-4">
                 Featured Stories
               </h2>
               <div className="card bg-base-100 shadow-xl pt-4">
                 <figure>
                   <img
-                    src={feature1}
+                    src={'https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/0-69bb90b8-1811-4e35-a1dd-f94f3bc7e72b.png'}
                     alt="Shoes"
+                    className="w-80"
                   />
                 </figure>
                 <hr className="w-3/4 mx-auto my-4"/>

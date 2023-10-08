@@ -66,16 +66,16 @@ export default function Navbar({ page }) {
         <ul className="menu p-4 w-80 min-h-full bg-base-200">
           {/* Sidebar content here */}
           <li>
-            <a>Home</a>
+            <a href="..">Home</a>
           </li>
           <li>
-            <a>Share</a>
+            <a href="./share">Share</a>
           </li>
           <li>
-            <a>Admin</a>
+            <a href="./admin">Admin</a>
           </li>
           <li>
-            <a>Images</a>
+            <a href="./images">Images</a>
           </li>
         </ul>
       </div>
